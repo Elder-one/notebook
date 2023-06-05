@@ -1,4 +1,5 @@
 import json
+from datetime import datetime as dt
 
 
 class notebook:
@@ -101,3 +102,77 @@ class notebook:
     def sort_by_date(self):
         self.notes.sort(key = lambda note: note["timestamp"])
         self.show_notebook()
+
+
+
+def main():
+    print('Enter initial command or "/help" to see initial command list')
+    while True:
+        cmd = input("--> ")
+        if cmd == "/help":
+            print("/fromfile - load notebook from file")
+            print("/new - create new notebook")
+        elif cmd == "/new":
+            book = notebook(from_file=False)
+            break
+        elif cmd == "/fromfile":
+            try:
+                book = notebook(from_file=True)
+                break
+            except Exception:
+                print("File not found or damaged")
+        else:
+            print(f"Unknown command '{cmd}'")
+
+    print('Enter proccession command or "/help" to see proccession command list')
+    while True:
+        cmd = input("--> ")
+        words = cmd.split()
+        if cmd == "/help":
+            print("/add - add new note to the book")
+            print("/edit <id> - edit note with ID <id>")
+            print("/remove <id> - remove note with ID <id>")
+            print("/print <id> - print note with ID <id>")
+            print("/show - show whole book")
+            print("/relevant <hrs> - show notes made <hrs> hours ago and earlier")
+            print("/save - save notebook to the file")
+            print("/exit - exit the program")
+            print("/timesort - sort notebook by date")
+
+        elif cmd == "/add":
+            book.add()
+
+        elif cmd == "/timesort":
+            book.sort_by_date()
+
+        elif cmd == "/exit":
+            break
+
+        elif cmd == "/save":
+            book.save()
+
+        elif cmd == "/show":
+            book.show_notebook()
+
+        elif (len(words) == 2):
+            try:
+                param = int(words[1])
+                if words[0] == "/edit":
+                    book.remove(param)
+                elif words[0] == "/print":
+                    book.show_note(param)
+                elif words[0] == "/remove":
+                    book.remove(param)
+                elif words[0] == "/relevant":
+                    book.choose_relevant(param)
+                else:
+                    print(f"Unknown command {cmd}")
+            except Exception:
+                print(f"Invalid parameter {words[1]}")
+
+        else:
+            print(f"Unknown command {cmd}")
+
+
+if __name__ == '__main__':
+    main()
