@@ -57,9 +57,11 @@ class notebook:
             flag = input('Enter "0" if you want to change the title\n\t"1" if you want to change text --> ')
             if flag == "0":
                 self.notes[index]["title"] = input("Enter a new title --> ")
+                self.notes[index]["timestamp"] = dt.now().timestamp()
                 break
             elif flag == "1":
                 self.notes[index]["content"] = input("Enter new text --> ")
+                self.notes[index]["timestamp"] = dt.now().timestamp()
                 break
             else:
                 print("Invalid input, try again")
