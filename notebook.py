@@ -100,7 +100,7 @@ class notebook:
 
 
     def sort_by_date(self):
-        self.notes.sort(key = lambda note: note["timestamp"])
+        self.notes.sort(key = lambda note: note["timestamp"], reverse=True)
         self.show_notebook()
 
 
