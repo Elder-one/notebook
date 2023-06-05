@@ -100,7 +100,7 @@ class notebook:
 
 
     def sort_by_date(self):
-        self.notes.sort(key = lambda note: note["timestamp"])
+        self.notes.sort(key = lambda note: note["timestamp"], reverse=True)
         self.show_notebook()
 
 
@@ -134,7 +134,7 @@ def main():
             print("/remove <id> - remove note with ID <id>")
             print("/print <id> - print note with ID <id>")
             print("/show - show whole book")
-            print("/relevant <hrs> - show notes made <hrs> hours ago and earlier")
+            print("/relevant <hrs> - show notes made <hrs> hours ago and later")
             print("/save - save notebook to the file")
             print("/exit - exit the program")
             print("/timesort - sort notebook by date")
