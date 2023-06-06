@@ -160,7 +160,7 @@ def main():
             try:
                 param = int(words[1])
                 if words[0] == "/edit":
-                    book.remove(param)
+                    book.edit(param)
                 elif words[0] == "/print":
                     book.show_note(param)
                 elif words[0] == "/remove":
